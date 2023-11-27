@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-
+import FileStorageContextComponent from './context/FileStorageContext';
 import { BrowserRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
@@ -18,7 +18,9 @@ ReactDOM.render(
   <React.Fragment>
     <BrowserRouter>
       <QueryClientProvider client={queryClient}>
-        <App />
+        <FileStorageContextComponent>
+          <App />
+        </FileStorageContextComponent>
       </QueryClientProvider>
     </BrowserRouter>
   </React.Fragment>,

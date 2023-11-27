@@ -1,5 +1,5 @@
 export const configurations = Object.freeze({
-  contractAddress: '0x9333CEF4844403a3Da71733501E31Eb3E278E309',
+  contractAddress: '0x0BAa2431a63F34136CAE407f2240BB138DE0bC91',
   ownerAddress: '0xC5B9a788C30EC4955D3FAC9590c0924381b552DB',
   ethNodePoint: 'https://sepolia.infura.io/v3/e43d53efdbcd4b859f45dd09c6787d3c',
   contractAbi: [
@@ -35,6 +35,18 @@ export const configurations = Object.freeze({
           internalType: 'string',
           name: 'fileName',
           type: 'string'
+        },
+        {
+          indexed: false,
+          internalType: 'uint256',
+          name: 'fileSize',
+          type: 'uint256'
+        },
+        {
+          indexed: false,
+          internalType: 'uint256',
+          name: 'newAvailableStorage',
+          type: 'uint256'
         }
       ],
       name: 'FileDeleted',
@@ -67,6 +79,18 @@ export const configurations = Object.freeze({
           internalType: 'string',
           name: 'fileName',
           type: 'string'
+        },
+        {
+          indexed: false,
+          internalType: 'uint256',
+          name: 'fileSize',
+          type: 'uint256'
+        },
+        {
+          indexed: false,
+          internalType: 'uint256',
+          name: 'newAvailableStorage',
+          type: 'uint256'
         }
       ],
       name: 'FileStored',
@@ -137,3 +161,19 @@ export const configurations = Object.freeze({
     }
   ]
 });
+
+export const ARRAY_KEYS = {
+  LABEL: 'LABEL',
+  VALUE: 'VALUE',
+  COMPONENT: 'COMPONENT',
+  DATA: 'DATA',
+  ON_CLICK: 'ON_CLICK',
+  HEADER: 'HEADER',
+  BODY: 'BODY',
+  DISPLAY_FN: 'DISPLAY_FN',
+  DISPLAY_FN_2: 'DISPLAY_FN_2',
+  MIN_WIDTH: 'MIN_WIDTH',
+  FILE_NAME: 'FILE_NAME'
+};
+
+export const ZERO = 0;

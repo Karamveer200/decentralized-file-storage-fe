@@ -10,7 +10,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Scrollbar } from 'react-scrollbars-custom';
 import classes from './Table.module.css';
-import { ARRAY_KEYS, HEDERA_API_KEYS, ZERO } from '../../../utils/constants';
+import { ARRAY_KEYS, ZERO } from '../../../utils/constants';
 import Spinner from '../Spinner/Spinner';
 import { isArray, isArrayReady } from '../../../utils/helperFunctions';
 
@@ -43,52 +43,12 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   }
 }));
 
-const TableData = ({
-  headers = [],
-  bodyData = [],
-  isFetching = false,
-  insideSidebar,
-  userAccountId,
-  setLocalUserAccountId = () => {}
-}) => {
+const TableData = ({ headers = [], bodyData = [], isFetching = false }) => {
   const isDataFound = isArray(bodyData);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const value = e.target[ZERO].value;
-
-    setLocalUserAccountId(value);
-  };
-
-  const InputSearch = () => (
-    <form onSubmit={handleSubmit}>
-      <input
-        className="h-8 text-base pl-5 w-full border-1 rounded-sm mb-5 MontserratFamily font-semibold"
-        placeholder="Enter User account id"
-        defaultValue={userAccountId}
-      />
-    </form>
-  );
 
   if (isFetching) return <Spinner center />;
 
   const Wrapper = ({ children }) => {
-    if (insideSidebar) {
-      return (
-        <Scrollbar className={`${classes.removeInset} h-full w-full`}>
-          <>
-            <InputSearch />
-            {isDataFound && (
-              <div className="text-sm text-white px-2 pb-1 MontserratFamily font-bold">
-                Showing last 50 transactions -{' '}
-              </div>
-            )}
-            {children}
-          </>
-        </Scrollbar>
-      );
-    }
-
     return <>{children}</>;
   };
 
@@ -106,7 +66,7 @@ const TableData = ({
                     align="center"
                     key={index}
                     style={minWidth ? { minWidth: minWidth } : {}}
-                    className={`${classes.borders} ${classes.fontSize16}`}>
+                    className={`${classes.borders} ${classes.fontSize22}`}>
                     {item[ARRAY_KEYS.HEADER]}
                   </StyledTableCell>
                 );
@@ -121,11 +81,18 @@ const TableData = ({
                 return (
                   <StyledTableRow key={index}>
                     {isArrayReady(rowsArray)?.map((item, rowIndex) => {
-                      if (item === ARRAY_KEYS.DISPLAY_FN) {
-                        const displayFn = row[ARRAY_KEYS.DISPLAY_FN];
+                      if (item === ARRAY_KEYS.DISPLAY_FN || item === ARRAY_KEYS.DISPLAY_FN_2) {
+                        const displayFn =
+                          item === ARRAY_KEYS.DISPLAY_FN
+                            ? row[ARRAY_KEYS.DISPLAY_FN]
+                            : row[ARRAY_KEYS.DISPLAY_FN_2];
 
                         return (
-                          <StyledTableCell align="center" key={rowIndex}>
+                          <StyledTableCell
+                            align="center"
+                            key={rowIndex}
+                            className={`
+                            ${classes.borders}`}>
                             {displayFn}
                           </StyledTableCell>
                         );
@@ -136,12 +103,9 @@ const TableData = ({
                         <StyledTableCell
                           align="center"
                           key={rowIndex}
-                          className={`${
-                            dataText === HEDERA_API_KEYS.FAILED && 'bg-red-700 text-white'
-                          } ${
-                            dataText === HEDERA_API_KEYS.SUCCESS &&
-                            'bg-green-700 text-white font-bold'
-                          }  ${classes.borders} ${classes.fontSize14}`}>
+                          className={`
+                             text-white font-bold 
+                            ${classes.borders} ${classes.fontSize18}`}>
                           {dataText}
                         </StyledTableCell>
                       );
