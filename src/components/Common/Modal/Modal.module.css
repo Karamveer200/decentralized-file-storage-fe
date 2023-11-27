@@ -1,0 +1,8 @@
+.hideOverlay > div:first-child {
+  background: transparent !important;
+}
+
+.root > div:nth-child(2) {
+  border-radius: 10px;
+  background: #ffffff;
+}

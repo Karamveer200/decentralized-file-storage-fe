@@ -1,0 +1,10 @@
+.icon {
+  font-size: 1.5rem !important;
+  margin-right: 3px !important;
+}
+
+@media screen and (max-width: 640px) {
+  .icon {
+    font-size: 1.1rem !important;
+  }
+}

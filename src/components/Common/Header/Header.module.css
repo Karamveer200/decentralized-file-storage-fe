@@ -1,0 +1,13 @@
+.logo {
+  height: 45px;
+}
+
+.reduceLineHeight {
+  line-height: 120% !important;
+}
+
+.arrow {
+  font-size: 25px;
+  position: absolute;
+  top: 3px;
+}

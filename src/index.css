@@ -1,0 +1,144 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --disabled-color: #58585a;
+  --indigo-500: #6366f1;
+  --indigo-600: #4f46e5;
+  --indigo-400: #818cfb;
+  --gray-900: #111827;
+  --fullRotationDeg: '7110deg';
+  --navbarHeight: 80px;
+  --sideDrawer-bg: #e5e0ff;
+  font-family: 'Montserrat' !important;
+}
+
+* {
+  box-sizing: border-box;
+  line-height: 120% !important;
+  font-family: 'Montserrat' !important;
+  letter-spacing: 2px;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.marginTopRoot {
+  margin-top: var(--navbarHeight);
+}
+
+.headerPurpleBG {
+  background-image: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+}
+
+.bannerPurpleBG {
+  background-image: linear-gradient(to left, #6e6ef1, #5b4fd5, #6f6fe2);
+}
+
+.pinkWhiteText {
+  background-image: linear-gradient(45deg, #b666e2, #ebdce3);
+  background-size: 100%;
+  background-repeat: repeat;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
+  letter-spacing: 1px;
+}
+
+.blueWhiteText {
+  background-image: linear-gradient(45deg, #f4f7f4, #a2f7a4);
+  background-size: 100%;
+  background-repeat: repeat;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
+  letter-spacing: 1px;
+}
+
+.bulletList {
+  list-style-type: disc;
+  display: flex;
+  flex-direction: column;
+}
+
+.MontserratFamily {
+  font-family: 'Montserrat' !important;
+  line-height: 150% !important;
+}
+
+.fadeIn {
+  z-index: 1;
+  animation: fadeIn ease-in 1;
+  animation-fill-mode: forwards;
+  animation-duration: 2s;
+}
+
+.fadeOut {
+  z-index: 1;
+  transition: all 500ms ease-out;
+  animation: fadeOut ease-out 1;
+  animation-fill-mode: forwards;
+  animation-duration: 2s;
+}
+
+.disable-btn {
+  pointer-events: none !important;
+  background: var(--disabled-color) !important;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+.toastStyles {
+  margin-top: 50px !important;
+}
+
+.toastStyles > div {
+  margin-left: -80px !important;
+}
+
+@media screen and (max-width: 640px) {
+  .toastStyles {
+    margin-top: 100px !important;
+  }
+
+  .toastStyles {
+    width: 280px !important;
+    left: auto !important;
+    right: 1em !important;
+  }
+
+  .toastStyles > div {
+    margin-left: 0px !important;
+  }
+}

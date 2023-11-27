@@ -1,0 +1,5 @@
+.root > div:nth-child(3) {
+  border-top-left-radius: 15px !important;
+  border-bottom-left-radius: 15px !important;
+  background: var(--sideDrawer-bg) !important;
+}
