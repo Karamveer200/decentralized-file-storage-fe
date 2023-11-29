@@ -4,6 +4,7 @@ import { configurations } from '../utils/constants';
 import fileDownload from 'js-file-download';
 import OverLayLoader from '../components/Common/FallbackLoader/OverLayLoader';
 import { toast } from 'react-toastify';
+import { v4 as uuidv4 } from 'uuid';
 
 export const FileStorageContext = createContext();
 
@@ -93,7 +94,7 @@ const FileStorageContextComponent = (props) => {
       try {
         const ownerAddress = configurations.ownerAddress;
 
-        const transaction = await contract.methods.storeFile(fileName, fileContent).send({
+        const transaction = await contract.methods.storeFile(fileName, fileContent, uuidv4()).send({
           from: ownerAddress
         });
         console.log('File stored. Transaction Hash:', transaction.transactionHash);
