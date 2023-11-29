@@ -15,19 +15,24 @@ const FileStorageContextComponent = (props) => {
   const [web3, setWeb3] = useState(null);
   const [contract, setContract] = useState(null);
   const [events, setEvents] = useState(new Set());
+
+  const [storedFileIds, setStoredFileIds] = useState(new Set());
+
   const [availableSize, setAvailableSize] = useState(0);
 
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSetEvents = (txnData) => {
-    console.log('txnData', txnData);
     const fileName = txnData?.returnValues?.fileName;
+    const fileId = txnData?.returnValues?.fileId;
+
     const newAvailableStorage = txnData?.returnValues?.newAvailableStorage;
 
     setAvailableSize(Number(newAvailableStorage));
 
-    if (!events?.has(fileName)) {
-      setEvents((prevNames) => new Set(prevNames.add(fileName)));
+    if (!storedFileIds?.has(fileId)) {
+      setStoredFileIds((prevNames) => new Set(prevNames.add(fileId)));
+      setEvents((prevNames) => new Set(prevNames.add({ fileName, fileId })));
     }
   };
 
@@ -77,11 +82,6 @@ const FileStorageContextComponent = (props) => {
           .FileStored(options)
           ?.on('data', (event) => handleSetEvents(event))
           ?.on('error', (err) => console.log('error - ', err));
-
-        fileStorageContract.events
-          .FileDeleted(options)
-          ?.on('data', (event) => handleSetEvents(event))
-          ?.on('error', (err) => console.log('error - ', err));
       }
     };
 
@@ -125,18 +125,18 @@ const FileStorageContextComponent = (props) => {
     }
   };
 
-  const handleFileDeletion = async (fileName) => {
+  const handleFileDeletion = async (name, id) => {
     if (contract) {
       setIsLoading(true);
 
       try {
         const ownerAddress = configurations.ownerAddress;
 
-        await contract.methods.deleteFile(fileName).send({
+        await contract.methods.deleteFile(id).send({
           from: ownerAddress
         });
 
-        toast.info(`${fileName} has been deleted successfully...`);
+        toast.info(`${name} has been deleted successfully...`);
       } catch (error) {
         console.error('Error deleting file:', error);
         toast.error('Unable to delete file');

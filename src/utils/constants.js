@@ -1,5 +1,5 @@
 export const configurations = Object.freeze({
-  contractAddress: '0x0BAa2431a63F34136CAE407f2240BB138DE0bC91',
+  contractAddress: '0x3E582EC02153212ABaA50681447ADF436C2b2d3E',
   ownerAddress: '0xC5B9a788C30EC4955D3FAC9590c0924381b552DB',
   ethNodePoint: 'https://sepolia.infura.io/v3/e43d53efdbcd4b859f45dd09c6787d3c',
   contractAbi: [
@@ -7,7 +7,7 @@ export const configurations = Object.freeze({
       inputs: [
         {
           internalType: 'string',
-          name: 'fileName',
+          name: 'fileId',
           type: 'string'
         }
       ],
@@ -30,18 +30,6 @@ export const configurations = Object.freeze({
     {
       anonymous: false,
       inputs: [
-        {
-          indexed: false,
-          internalType: 'string',
-          name: 'fileName',
-          type: 'string'
-        },
-        {
-          indexed: false,
-          internalType: 'uint256',
-          name: 'fileSize',
-          type: 'uint256'
-        },
         {
           indexed: false,
           internalType: 'uint256',
@@ -82,9 +70,9 @@ export const configurations = Object.freeze({
         },
         {
           indexed: false,
-          internalType: 'uint256',
-          name: 'fileSize',
-          type: 'uint256'
+          internalType: 'string',
+          name: 'fileId',
+          type: 'string'
         },
         {
           indexed: false,
@@ -106,6 +94,11 @@ export const configurations = Object.freeze({
         {
           internalType: 'string',
           name: 'content',
+          type: 'string'
+        },
+        {
+          internalType: 'string',
+          name: 'uniqueId',
           type: 'string'
         }
       ],
@@ -144,7 +137,7 @@ export const configurations = Object.freeze({
       inputs: [
         {
           internalType: 'string',
-          name: 'fileName',
+          name: 'fileId',
           type: 'string'
         }
       ],

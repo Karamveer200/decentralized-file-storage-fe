@@ -1,4 +1,4 @@
-import React, { useRef, useContext } from 'react';
+import React, { useRef, useContext, useState } from 'react';
 import { toast } from 'react-toastify';
 import { prepareFileForStoring } from '../../../utils/helperFunctions';
 import { FileStorageContext } from '../../../context/FileStorageContext';
@@ -15,8 +15,12 @@ const FileUploader = () => {
       const fileName = file?.name;
 
       const fileContent = await prepareFileForStoring(file);
-      console.log('fileContent', fileName, fileContent);
+
       await handleStoreFile(fileName, fileContent);
+
+      if (inputFileRef.current) {
+        inputFileRef.current.value = '';
+      }
     } catch (error) {
       console.log(error);
     }

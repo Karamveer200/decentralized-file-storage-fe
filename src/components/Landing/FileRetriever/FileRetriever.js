@@ -13,10 +13,9 @@ const FileRetriever = () => {
 
   const eventsArray = [...events];
 
-  const retrieveFile = async (name) => {
+  const retrieveFile = async (name, id) => {
     try {
-      const b64Data = await handleFileRetrieval(name);
-
+      const b64Data = await handleFileRetrieval(id);
       const parseBlob = await convertBase64ToBlob(JSON.parse(b64Data).blob);
 
       await downloadFile(parseBlob, name);
@@ -36,16 +35,25 @@ const FileRetriever = () => {
 
   const bodyData = isArrayReady(eventsArray)?.map((item) => {
     return {
-      [ARRAY_KEYS.FILE_NAME]: item,
+      [ARRAY_KEYS.FILE_NAME]: item.fileName,
       [ARRAY_KEYS.DISPLAY_FN]: (
-        <ActionBtn onClick={() => retrieveFile(item)} text="Download" isTableBtn />
+        <ActionBtn
+          onClick={() => retrieveFile(item.fileName, item.fileId)}
+          text="Download"
+          isTableBtn
+        />
       ),
       [ARRAY_KEYS.DISPLAY_FN_2]: (
-        <ActionBtn onClick={() => handleFileDeletion(item)} text="Delete" isTableBtn />
+        <ActionBtn
+          onClick={() => handleFileDeletion(item.fileName, item.fileId)}
+          text="Delete"
+          isTableBtn
+        />
       )
     };
   });
 
+  console.log('eventsArray', eventsArray);
   return (
     <div className="flex flex-col gap-3">
       <header className="text-white text-2xl font-bold">Your uploads - </header>
